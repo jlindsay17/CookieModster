@@ -25,15 +25,12 @@ public class RegistryHandler
     public static void preInitRegistries() {
         EntityInit.registerEntities();
         RenderHandler.registerEntityRender();
-
     }
     public static void postInitRegistries() {
-
 
     }
 
     public static void serverInitRegistries() {
-
-
+        //SoundsHandler.registerSounds();
     }
 }

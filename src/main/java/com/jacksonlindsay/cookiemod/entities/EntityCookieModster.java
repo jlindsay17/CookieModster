@@ -6,6 +6,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -13,10 +14,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.IModel;
 
-public class EntityCookieModster extends EntityOcelot {
+public class EntityCookieModster extends EntityTameable {
     public EntityCookieModster(World worldIn) {
         super(worldIn);
-//        this.setSize(width, height);
+        this.setSize(width, height/2);
     }
 
     //Sets task priority for mob AI
@@ -65,7 +66,6 @@ public class EntityCookieModster extends EntityOcelot {
                 if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player))
                 {
                     this.setTamedBy(player);
-                    this.setTameSkin(1 + this.world.rand.nextInt(3));
                     this.playTameEffect(true);
                     this.aiSit.setSitting(true);
                     this.world.setEntityState(this, (byte)7);
@@ -85,7 +85,7 @@ public class EntityCookieModster extends EntityOcelot {
 
     //Breeding protocol
     @Override
-    public EntityOcelot createChild(EntityAgeable ageable){
+    public EntityTameable createChild(EntityAgeable ageable){
         this.setSize(0.5F, 0.5F);
         return new EntityCookieModster(world);
     }
